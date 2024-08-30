@@ -1,0 +1,22 @@
+<main [className]="'w-full h-screen bg-sky-100 flex justify-center items-center'">
+
+  <div [className]="'w-full h-screen absolute z-40 flex flex-col justify-center items-center'">
+
+    <div class="title absolute top-[10rem]">
+      <h1 class="text-black m-6 font-bold text-[2rem]">
+        {{clockTime}}
+      </h1>
+    </div>
+
+    <div class=" w-60 h-60  z-40 " id="clock">
+      <img src="assets/clock/clock.png" class="relative" alt="Clock" id="clock-img">
+    </div>
+    <div class="absolute w-[10rem]">
+
+      <img src="assets/clock/hand.png" [ngStyle]="{'rotate':handRotation}" alt="hand">
+    </div>
+
+
+  </div>
+
+</main>
