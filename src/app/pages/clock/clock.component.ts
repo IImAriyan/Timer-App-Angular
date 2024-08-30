@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
-import {NgStyle} from "@angular/common";
+import {NgIf, NgStyle} from "@angular/common";
+import {LoaderComponent} from "../../components/loader/loader.component";
 
 
 @Component({
   selector: 'app-clock',
   standalone: true,
   imports: [
-    NgStyle
+    NgStyle,
+    LoaderComponent,
+    NgIf
 
   ],
   templateUrl: './clock.component.html',
   styleUrl: './clock.component.css'
 })
 export class ClockComponent {
+  isLoading: boolean = false;
+
   clockTime : string = '00:00:00';
   hour: number | string = 0;
   minute: number | string = 0;
@@ -24,7 +29,11 @@ export class ClockComponent {
 
 
   constructor() {
+    this.isLoading = true;
     setInterval(()=>{
+      if (this.isLoading) {
+        this.isLoading = false;
+      }
       let time = new Date();
 
       this.hour = time.getHours();
@@ -46,7 +55,7 @@ export class ClockComponent {
 
       if (time.getHours() > 10){ // Getting PM Hour Rotation
 
-        this.rotation = (( ( time.getHours() - 12 ) * 3 ) * 10) + (time.getMinutes() / 3);
+        this.rotation = (( ( time.getHours() - 12 ) * 3 ) * 10) + (time.getMinutes() / 2.2);
 
         this.handRotation =  this.rotation + 'deg';
       }
