@@ -1,36 +1,45 @@
-<main class="w-full h-screen bg-sky-100">
+<main    class="w-full h-screen bg-sky-100">
 
   <div class="p-4 w-full flex justify-center items-center">
-      <div class="flex">
-        <mat-icon (click)="previousMonth()" class="mr-2 transition-all rounded-[50%] cursor-pointer duration-300 hover:bg-sky-200 ">
-          keyboard_arrow_left</mat-icon>
+      <div class="flex gap-10">
+        <button mat-icon-button color="primary" (click)="previousMonth()" class="justify-center items-center flex" >
+          <mat-icon >arrow_back_ios</mat-icon>
+        </button>
+
         <div class="flex justify-center flex-col ">
           <div class="font-black flex justify-center text-[1.4rem]" id="year">
             {{year}}
           </div>
           <div class="flex justify-center gap-2">
-            {{months[month].name}} {{day}}
+            {{months[month].name}}
           </div>
         </div>
 
-          <mat-icon (click)="nextMonth()" class="ml-2 transition-all rounded-[50%] cursor-pointer duration-300 hover:bg-sky-200 ">
-            keyboard_arrow_right</mat-icon>
+
+        <button mat-icon-button color="primary" (click)="nextMonth()" class="justify-center items-center flex" >
+          <mat-icon >arrow_forward_ios</mat-icon>
+        </button>
+
       </div>
   </div>
 
-  <section class="grid grid-cols-7 ">
+  <section  class="grid grid-cols-7 ">
     @for (dayIs of  days;track dayIs;let i = $index) {
+
       <div [ngClass]="{'border-green-500':i+1 == time.getDate() && month == time.getMonth() && year == time.getFullYear()}"
+           [routerLink]="['/calendar/'+year+'/'+month+'/'+day+'/']"
            class="flex flex-col parent items-center border-[1px] bg-white rounded  border-gray-200 h-[7.15rem] cursor-pointer transition-all duration-300
-    hover:bg-green-400 hover:opacity-60 hover:text-white" >
-        <h1>{{ i+1 }}</h1>
-        <h1>{{dayIs}}</h1>
+    hover:bg-cyan-50 " >
+        <h1>{{ dayIs.day }}</h1>
+        <h1>{{dayIs.dayName}}</h1>
         @if (i+1 == time.getDate() && month == time.getMonth() && year == time.getFullYear()) {
-          <h1 class="text-gray  rounded-xl bg-rose-600 text-white px-5">today</h1>
+          <h1 class="text-gray  rounded-xl bg-rose-600 text-white px-5 text-[0.7rem]">today</h1>
         }
       </div>
     } @empty {
       <h2>No Items Yet</h2>
     }
+
   </section>
 </main>
+<app-footer></app-footer>

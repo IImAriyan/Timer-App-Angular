@@ -1,0 +1,20 @@
+.hour-text {
+  height: 40px;
+  text-align: left;
+  background-color: white;
+
+  border: none;
+  border-bottom: solid 1px gray
+}
+.card {
+  width: calc(100% - 50px);
+  resize: vertical;
+  position: absolute;
+  filter: opacity(0.8);
+  border-radius: 0;
+}
+
+.button.mat-mdc-tooltip-trigger.card.flex.flex-row.justify-start.items-center.mdc-button.mdc-button--unelevated.mat-mdc-unelevated-button.mat-primary.mat-mdc-button-base {
+  display: flex;
+  justify-content: start;
+}

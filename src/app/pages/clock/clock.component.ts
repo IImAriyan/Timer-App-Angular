@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import {NgIf, NgStyle} from "@angular/common";
 import {LoaderComponent} from "../../components/loader/loader.component";
 import colors from "tailwindcss/colors";
+import {FooterComponent} from "../../components/footer/footer.component";
 
 
 @Component({
   selector: 'app-clock',
   standalone: true,
-  imports: [
-    NgStyle,
-    LoaderComponent,
-    NgIf
+    imports: [
+        NgStyle,
+        LoaderComponent,
+        NgIf,
+        FooterComponent
 
-  ],
+    ],
 
   templateUrl: './clock.component.html',
   styleUrl: './clock.component.css'

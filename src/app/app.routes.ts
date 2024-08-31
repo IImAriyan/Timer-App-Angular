@@ -3,6 +3,7 @@ import {ModuleWithProviders} from "@angular/core";
 import {ClockComponent} from "./pages/clock/clock.component";
 import {CalendarComponent} from "./pages/calendar/calendar.component";
 import {AlarmComponent} from "./pages/alarm/alarm.component";
+import {ScheduleComponent} from "./pages/schedule/schedule.component";
 
 export const routes: Routes = [
   {
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
     path:'alarm',
     component:AlarmComponent
+  },
+  {
+    path:'calendar/:year/:month/:day',
+    component:ScheduleComponent
   }
 
 ];

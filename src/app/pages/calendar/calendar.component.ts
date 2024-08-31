@@ -3,6 +3,10 @@ import {Month} from "../../models/month.model";
 import {MatIcon} from "@angular/material/icon";
 import {NgClass, NgForOf, NgStyle} from "@angular/common";
 import moment from "moment";
+import {MatIconButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
+import {FooterComponent} from "../../components/footer/footer.component";
+
 
 @Component({
   selector: 'app-calendar',
@@ -11,7 +15,10 @@ import moment from "moment";
     MatIcon,
     NgForOf,
     NgStyle,
-    NgClass
+    NgClass,
+    MatIconButton,
+    RouterLink,
+    FooterComponent
   ],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
@@ -39,7 +46,9 @@ export class CalendarComponent {
   year : number = 0;
   month : number = 0;
   day : number = 0;
-  days : string[] = [];
+  days : {dayName:string,day:number}[] = [];
+
+
 
 
   getDayNames (month:number, year:number)  {
@@ -50,8 +59,9 @@ export class CalendarComponent {
       let date = moment(`${month}-${i}-${year}`, 'MM-DD-YYYY')
       let dayName = date.format('dddd')
 
-      this.days.push(dayName)
+      this.days.push({"dayName":dayName,"day":i})
     }
+
 
 
   }
@@ -71,7 +81,7 @@ export class CalendarComponent {
     if (this.month <= 10) {
       this.month = this.month + 1;
       this.day = 1;
-      if (this.month == this.time.getMonth()) {
+      if (this.month == this.time.getMonth() && this.year == this.time.getFullYear()) {
         this.day = this.time.getDate();
       }
       this.getDayNames(this.month+1, this.year)
@@ -79,7 +89,7 @@ export class CalendarComponent {
       this.year = this.year + 1;
       this.month = 0;
       this.day = 1;
-      if (this.month == this.time.getMonth()) {
+      if (this.month == this.time.getMonth() && this.year == this.time.getFullYear()) {
         this.day = this.time.getDate();
       }
       this.getDayNames(this.month+1, this.year)
@@ -90,7 +100,7 @@ export class CalendarComponent {
     if (this.month > 0) {
       this.month = this.month - 1;
       this.day = 1;
-      if (this.month == this.time.getMonth()) {
+      if (this.month == this.time.getMonth() && this.year == this.time.getFullYear()) {
         this.day = this.time.getDate();
       }
       this.getDayNames(this.month+1, this.year)
@@ -98,7 +108,7 @@ export class CalendarComponent {
       this.year = this.year - 1;
       this.month = 11;
       this.day = 1;
-      if (this.month == this.time.getMonth()) {
+      if (this.month == this.time.getMonth() && this.year == this.time.getFullYear()) {
         this.day = this.time.getDate();
       }
       this.getDayNames(this.month+1, this.year)
