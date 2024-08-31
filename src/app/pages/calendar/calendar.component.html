@@ -1,0 +1,36 @@
+<main class="w-full h-screen bg-sky-100">
+
+  <div class="p-4 w-full flex justify-center items-center">
+      <div class="flex">
+        <mat-icon (click)="previousMonth()" class="mr-2 transition-all rounded-[50%] cursor-pointer duration-300 hover:bg-sky-200 ">
+          keyboard_arrow_left</mat-icon>
+        <div class="flex justify-center flex-col ">
+          <div class="font-black flex justify-center text-[1.4rem]" id="year">
+            {{year}}
+          </div>
+          <div class="flex justify-center gap-2">
+            {{months[month].name}} {{day}}
+          </div>
+        </div>
+
+          <mat-icon (click)="nextMonth()" class="ml-2 transition-all rounded-[50%] cursor-pointer duration-300 hover:bg-sky-200 ">
+            keyboard_arrow_right</mat-icon>
+      </div>
+  </div>
+
+  <section class="grid grid-cols-7 ">
+    @for (dayIs of  days;track dayIs;let i = $index) {
+      <div [ngClass]="{'bg-green-300':i+1 == time.getDate() && month == time.getMonth()}" class="flex flex-col parent items-center bg-white rounded border border-gray-200 h-[6.7rem] cursor-pointer transition-all duration-300
+    hover:bg-cyan-300 hover:opacity-90" >
+        <h1>{{ i+1 }}</h1>
+        <h1>{{dayIs}}</h1>
+        @if (i+1 == time.getDate() && month == time.getMonth()) {
+          <h1 class="text-gray font-bold ">today</h1>
+        }
+
+      </div>
+    } @empty {
+      <h2>No Items Yet</h2>
+    }
+  </section>
+</main>

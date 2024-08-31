@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgIf, NgStyle} from "@angular/common";
 import {LoaderComponent} from "../../components/loader/loader.component";
+import colors from "tailwindcss/colors";
 
 
 @Component({
@@ -12,6 +13,7 @@ import {LoaderComponent} from "../../components/loader/loader.component";
     NgIf
 
   ],
+
   templateUrl: './clock.component.html',
   styleUrl: './clock.component.css'
 })
@@ -33,6 +35,7 @@ export class ClockComponent {
     setInterval(()=>{
       if (this.isLoading) {
         this.isLoading = false;
+
       }
       let time = new Date();
 
@@ -56,6 +59,11 @@ export class ClockComponent {
       if (time.getHours() > 10){ // Getting PM Hour Rotation
 
         this.rotation = (( ( time.getHours() - 12 ) * 3 ) * 10) + (time.getMinutes() / 2.2);
+
+        this.handRotation =  this.rotation + 'deg';
+      }
+      else if (4 < 10) { // Getting AM Hour Rotation
+        this.rotation = (( 4  * 3 ) * 10) + (time.getMinutes() / 2.2);
 
         this.handRotation =  this.rotation + 'deg';
       }
