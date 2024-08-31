@@ -20,14 +20,14 @@
 
   <section class="grid grid-cols-7 ">
     @for (dayIs of  days;track dayIs;let i = $index) {
-      <div [ngClass]="{'bg-green-300':i+1 == time.getDate() && month == time.getMonth()}" class="flex flex-col parent items-center bg-white rounded border border-gray-200 h-[6.7rem] cursor-pointer transition-all duration-300
-    hover:bg-cyan-300 hover:opacity-90" >
+      <div [ngClass]="{'border-green-500':i+1 == time.getDate() && month == time.getMonth() && year == time.getFullYear()}"
+           class="flex flex-col parent items-center border-[1px] bg-white rounded  border-gray-200 h-[7.15rem] cursor-pointer transition-all duration-300
+    hover:bg-green-400 hover:opacity-60 hover:text-white" >
         <h1>{{ i+1 }}</h1>
         <h1>{{dayIs}}</h1>
-        @if (i+1 == time.getDate() && month == time.getMonth()) {
-          <h1 class="text-gray font-bold ">today</h1>
+        @if (i+1 == time.getDate() && month == time.getMonth() && year == time.getFullYear()) {
+          <h1 class="text-gray  rounded-xl bg-rose-600 text-white px-5">today</h1>
         }
-
       </div>
     } @empty {
       <h2>No Items Yet</h2>
